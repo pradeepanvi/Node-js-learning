@@ -14,3 +14,23 @@ const ask = (i = 0) => {
 }
 
 ask();
+
+//Standard Input in Node
+const answers = [];
+process.stdin.on("data", data => {
+  answers.push(data.toString().trim());
+  if(answers.length < question.length){
+    ask(answers.length);
+  } else {
+    process.exit();
+  }
+})
+
+//After all question's answers
+process.on("exit", () => {
+  const [name, activity, lang] = answers;
+  console.log(`
+  Thank you for your answers.
+  Go ${activity} ${name} you can write ${lang} code later !!!
+  `)
+})
