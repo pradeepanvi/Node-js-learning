@@ -95,7 +95,7 @@ const timerFinished = () => {
 
 const interval = setInterval(incTime, waitInterval);
 setTimeout(timerFinished, waitTime);
-*/
+
 
 
 //add Progress with setInterval
@@ -122,3 +122,88 @@ const timerFinished = () => {
 
 const interval = setInterval(incTime, waitInterval);
 setTimeout(timerFinished, waitTime);
+
+//dir path
+const path = require("path");
+
+const dirUploads = path.join(__dirname, "www", "files", "uploads");
+
+console.log(dirUploads);
+
+//util path
+const path = require("path");
+const util = require("util");
+
+util.log(path.basename(__filename));
+util.log("^ The name of the current file");
+
+//check memory size with v8
+const path = require("path");
+const util = require("util");
+const v8 = require("v8");
+
+util.log(v8.getHeapStatistics());
+
+//both are same
+const path = require("path");
+const { log } = require("util");
+const { getHeapStatistics} = require("v8");
+
+log(getHeapStatistics());
+
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
+const questions = [
+  "What is your name? ",
+  "What do you live? ",
+  "What are you going to do with node js? "
+]
+
+const collectAnswers = (questions, done) => {
+  const answers = [];
+  const [firstQuestion] = questions;
+
+  const questionAnswered = answer => {
+    answer.push(answer);
+    if(answers.length < questions.length){
+      rl.question(questions[answers.length], questionAnswered);
+    } else {
+      done(answers);
+    }
+  }
+  rl.question(firstQuestion, questionAnswered);
+}
+
+collectAnswers(questions, answers => {
+  console.log("Thank you for your answers. ");
+  console.log(answers);
+  process.exit();
+});
+
+const name = require("./myModule");
+
+console.log(name);
+
+//use counter
+const counter = require("./myModule");
+
+counter.inc();
+counter.inc();
+counter.inc();
+
+console.log(counter.getCount());
+*/
+//both are working
+const { inc, dec, getCount } = require("./myModule");
+
+inc();
+inc();
+inc();
+dec();
+
+console.log(getCount());
